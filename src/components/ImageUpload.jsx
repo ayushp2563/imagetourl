@@ -1,50 +1,3 @@
-// import { useState } from "react";
-// import axios from "axios";
-
-// const ImageUpload = () => {
-//   const [file, setFile] = useState(null);
-//   const [imageUrl, setImageUrl] = useState("");
-
-//   const handleFileChange = (e) => {
-//     setFile(e.target.files[0]);
-//   };
-
-//   const handleUpload = async () => {
-//     const formData = new FormData();
-//     formData.append("image", file);
-
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:5000/upload",
-//         formData,
-//         {
-//           headers: {
-//             "Content-Type": "multipart/form-data",
-//           },
-//         }
-//       );
-//       setImageUrl(response.data.url);
-//     } catch (error) {
-//       console.error("Error uploading image:", error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <input type="file" onChange={handleFileChange} />
-//       <button onClick={handleUpload}>Upload Image</button>
-//       {imageUrl && (
-//         <div>
-//           <img src={imageUrl} alt="Uploaded" className="mt-4" />
-//           <p className="mt-2">Image URL: {imageUrl}</p>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ImageUpload;
-
 import { useState } from "react";
 import axios from "axios";
 import { IoCloudUploadOutline } from "react-icons/io5";
@@ -59,13 +12,17 @@ const ImageUpload = () => {
   };
 
   const handleUpload = async () => {
+    if (!file) {
+      console.error("No file selected");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("image", file);
 
     try {
       const response = await axios.post(
-        // "http://localhost:5000/upload",
-        "/upload",
+        "https://imagetourl-backend.onrender.com/upload", // Update with your backend URL
         formData,
         {
           headers: {
@@ -81,6 +38,11 @@ const ImageUpload = () => {
   };
 
   const copyToClipboard = () => {
+    if (!imageUrl) {
+      console.error("No image URL available");
+      return;
+    }
+
     navigator.clipboard
       .writeText(imageUrl)
       .then(() => {
@@ -95,7 +57,7 @@ const ImageUpload = () => {
   };
 
   return (
-    <div className="flex flex-col items-center space-y-4  rounded-2xl">
+    <div className="flex flex-col items-center space-y-4 rounded-2xl">
       <div>
         <input
           type="file"
@@ -114,17 +76,16 @@ const ImageUpload = () => {
         className="bg-blue-500 text-white py-2 px-4 rounded-2xl hover:bg-blue-600 transition-colors duration-200"
       >
         <p className="flex flex-row items-center justify-center">
-          {" "}
           <IoCloudUploadOutline className="mr-2" />
           Upload Image
         </p>
       </button>
       {imageUrl && (
-        <div className="flex flex-col sm:flex-row items-center justify-between space-y-2 ">
+        <div className="flex flex-col items-center space-x-2 py-2">
           <img
             src={imageUrl}
             alt="Uploaded"
-            className="w-auto h-auto sm:w-[80%] sm:h-[80%] rounded-md px-4"
+            className="w-auto h-auto rounded-md px-4"
           />
           <div className="flex flex-col items-center space-x-2 py-2">
             <p className="break-all text-sm bg-slate-400 rounded-2xl p-4 mb-2">
@@ -132,8 +93,7 @@ const ImageUpload = () => {
             </p>
             <button
               onClick={copyToClipboard}
-              className="bg-blue-500 text-white py-2 
-              px-4 rounded-2xl hover:bg-blue-600  transition-colors duration-200 "
+              className="bg-blue-500 text-white py-2 px-4 rounded-2xl hover:bg-blue-600 transition-colors duration-200"
             >
               {copyStatus}
             </button>
