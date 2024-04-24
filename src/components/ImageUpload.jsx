@@ -65,7 +65,7 @@ const ImageUpload = () => {
     try {
       const response = await axios.post(
         // "http://localhost:5000/upload",
-        "https://imagetourl-backend.onrender.com/upload",
+        "/upload",
         formData,
         {
           headers: {
