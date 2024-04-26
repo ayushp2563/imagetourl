@@ -23,7 +23,7 @@ const ImageUpload = () => {
 
     try {
       const response = await axios.post(
-        "https://imagetourl-backend.onrender.com", // Update with your backend URL
+        "https://imagetourl-backend.onrender.com/upload", // Update with your backend URL
         formData,
         {
           headers: {
