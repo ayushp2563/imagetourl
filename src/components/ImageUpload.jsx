@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ImageUpload = () => {
   const [file, setFile] = useState(null);
@@ -13,7 +15,7 @@ const ImageUpload = () => {
 
   const handleUpload = async () => {
     if (!file) {
-      console.error("No file selected");
+      toast.error("Please select an image to upload");
       return;
     }
 
@@ -132,6 +134,7 @@ const ImageUpload = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
