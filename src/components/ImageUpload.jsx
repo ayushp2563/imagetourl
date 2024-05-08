@@ -60,7 +60,7 @@ const ImageUpload = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-slate-800 px-4 py-4 ">
+    <div className=" flex justify-center items-start bg-slate-800 px-4 py-8 ">
       <div className="flex items-center flex-col justify-center bg-white p-8 rounded-2xl shadow-lg">
         {/* <img className="p-4 w-60 h-66" src={logo} /> */}
         <h1 className="jersey-20-regular">Image to URL</h1>
@@ -112,7 +112,7 @@ const ImageUpload = () => {
           <div className="text-black flex items-center justify-center mt-4">
             Made with 💛 by Ayush Prajapati
           </div>
-          <button
+          {/* <button
             type="button"
             className="text-white bg-[#24292F] hover:bg-[#050708] focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-2xl text-sm px-4 py-2.5 text-center inline-flex items-center mt-4 "
             onClick={() => window.open("https://github.com/ayushp2563")}
@@ -131,7 +131,7 @@ const ImageUpload = () => {
               />
             </svg>
             Visit My GitHub
-          </button>
+          </button> */}
         </div>
       </div>
       <ToastContainer />
