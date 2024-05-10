@@ -60,7 +60,7 @@ const ImageUpload = () => {
   };
 
   return (
-    <div className=" flex justify-center items-start bg-slate-800 px-4 py-8 ">
+    <div className=" flex justify-center items-start bg-slate-800 px-4 py-8 h-[450px] ">
       <div className="flex items-center flex-col justify-center bg-white p-8 rounded-2xl shadow-lg">
         {/* <img className="p-4 w-60 h-66" src={logo} /> */}
         <h1 className="jersey-20-regular">Image to URL</h1>
