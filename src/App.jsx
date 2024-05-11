@@ -4,7 +4,7 @@ import Steps from "./components/Steps";
 
 function App() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Steps />
       <ImageUpload />
     </div>
