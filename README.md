@@ -21,15 +21,17 @@ cd imagetourl
 ```
 
 3. Install the dependencies:
-
+   
 ```sh
 npm install
 ```
 
 ###  Running imagetourl
 
-Use the following command to run imagetourl:
+Use the following command to run imagetourl/frontend:
 
 ```sh
 npm run dev
 ```
+
+
