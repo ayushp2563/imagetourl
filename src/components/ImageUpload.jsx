@@ -23,6 +23,7 @@ const ImageUpload = () => {
     formData.append("image", file);
 
     try {
+      const loadingToastId = toast.loading("Uploading image...");
       const response = await axios.post(
         "https://imagetourl-backend.onrender.com/upload",
         // Update with your backend URL
@@ -33,16 +34,20 @@ const ImageUpload = () => {
           },
         }
       );
+      toast.dismiss(loadingToastId);
+      toast.success(`Image URL: ${response.data.url}`);
       setImageUrl(response.data.url);
       setCopyStatus("Copy URL");
     } catch (error) {
       console.error("Error uploading image:", error);
+      toast.error("Error uploading image");
     }
   };
 
   const copyToClipboard = () => {
     if (!imageUrl) {
       console.error("No image URL available");
+      toast.error("No image URL available");
       return;
     }
 
@@ -50,17 +55,19 @@ const ImageUpload = () => {
       .writeText(imageUrl)
       .then(() => {
         setCopyStatus("Copied!");
+        toast.success("Image URL copied to clipboard");
         setTimeout(() => {
           setCopyStatus("Copy URL");
-        }, 1500); // Reset copy status after 1.5 seconds
+        }, 1500);
       })
       .catch((error) => {
         console.error("Error copying to clipboard:", error);
+        toast.error("Error copying to clipboard");
       });
   };
 
   return (
-    <div className=" flex justify-center items-start bg-slate-800 px-4 pt-8 pb-8 min-h-[450px] h-auto ">
+    <div className=" flex justify-center items-start bg-slate-800 px-4 pt-8 pb-8 min-h-[500px] h-auto ">
       <div className="flex items-center flex-col justify-center bg-white p-8 rounded-2xl shadow-lg">
         {/* <img className="p-4 w-60 h-66" src={logo} /> */}
         <h1 className="jersey-20-regular">Image to URL</h1>
@@ -133,6 +140,20 @@ const ImageUpload = () => {
             Visit My GitHub
           </button> */}
         </div>
+        <button className="mt-4">
+          <a
+            href="https://www.producthunt.com/posts/image-to-url?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-image&#0045;to&#0045;url"
+            target="_blank"
+          >
+            <img
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=456585&theme=light"
+              alt="Image&#0032;to&#0032;URL - Get&#0032;URL&#0032;for&#0032;your&#0032;image&#0046; | Product Hunt"
+              className="width: 250px; height: 54px;"
+              width="250"
+              height="54"
+            />
+          </a>
+        </button>
       </div>
       <ToastContainer />
     </div>
