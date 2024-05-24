@@ -1,6 +1,9 @@
 import ImageUpload from "./components/ImageUpload";
 import "./App.css";
 import Steps from "./components/Steps";
+import { inject } from "@vercel/analytics";
+
+inject();
 
 function App() {
   return (
